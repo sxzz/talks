@@ -12,11 +12,11 @@ College student currently working towards a full time job on open source.
 
 <div my-10 w-max grid="~ cols-[40px_1fr] gap-y4" items-center justify-center>
   <div i-ri-github-line op50 ma text-xl/>
-  <div><a href="https://github.com/antfu" target="_blank">sxzz</a></div>
+  <div><a href="https://github.com/sxzz" target="_blank">sxzz</a></div>
   <div i-ri-twitter-line op50 ma text-xl/>
-  <div><a href="https://twitter.com/antfu7" target="_blank">sanxiaozhizi</a></div>
+  <div><a href="https://twitter.com/sanxiaozhizi" target="_blank">sanxiaozhizi</a></div>
   <div i-ri-earth-line op50 ma text-xl/>
-  <div><a href="https://antfu.me" target="_blank">sxzz.moe (Chinese)</a></div>
+  <div><a href="https://sxzz.moe" target="_blank">sxzz.moe (Chinese)</a></div>
 </div>
 
 <img src="https://raw.githubusercontent.com/sxzz/static/main/avatar.png" rounded-full w-40 abs-tr mt-16 mr-12/>
