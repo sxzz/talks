@@ -1,6 +1,10 @@
 {
   "name": "talks",
   "private": true,
+  "scripts": {
+    "build": "rimraf dist && pnpm -r run build",
+    "preview": "serve dist"
+  },
   "dependencies": {
     "@slidev/cli": "^0.36.10",
     "@slidev/theme-default": "^0.21.2",
@@ -8,6 +12,8 @@
   },
   "devDependencies": {
     "@iconify/json": "^2.1.133",
-    "playwright-chromium": "^1.27.1"
+    "playwright-chromium": "^1.27.1",
+    "rimraf": "^3.0.2",
+    "serve": "^14.1.2"
   }
 }
