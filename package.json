@@ -6,13 +6,13 @@
     "preview": "serve dist"
   },
   "dependencies": {
-    "@slidev/cli": "^0.36.10",
+    "@slidev/cli": "^0.37.1",
     "@slidev/theme-default": "^0.21.2",
     "@slidev/theme-seriph": "^0.21.3"
   },
   "devDependencies": {
-    "@iconify/json": "^2.1.133",
-    "playwright-chromium": "^1.27.1",
+    "@iconify/json": "^2.1.148",
+    "playwright-chromium": "^1.28.1",
     "rimraf": "^3.0.2",
     "serve": "^14.1.2"
   }
