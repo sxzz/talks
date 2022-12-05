@@ -1,16 +1,16 @@
 ---
 highlighter: shiki
 css: unocss
+title: 'Vue Macros'
 src: './pages/01-cover.md'
 ---
 
 ---
-src: '../../reuse/intro.md'
+src: '../../reuse/en/intro.md'
 ---
 
 ---
 layout: center
-name: Vue Macros
 ---
 
 <img src="/logo.svg" class="h-64 ma" />
@@ -56,13 +56,13 @@ layout: cover
 
 
 ---
-src: './pages/98-contributors.md'
+src: './pages/08-contributors.md'
 ---
 
 ---
-src: '../../reuse/sponsors.md'
+src: '../../reuse/en/sponsors.md'
 ---
 
 ---
-src: '../../reuse/thanks.md'
+src: '../../reuse/en/thanks.md'
 ---
