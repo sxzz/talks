@@ -34,6 +34,12 @@ importers:
 
   2022-12-vue-conf/src: {}
 
+  2023-05-ospp/src:
+    dependencies:
+      '@slidev/theme-apple-basic':
+        specifier: ^0.20.0
+        version: 0.20.0
+
 packages:
 
   /@ampproject/remapping@2.2.1:
@@ -933,6 +939,16 @@ packages:
     dependencies:
       '@slidev/types': 0.41.1
       js-yaml: 4.1.0
+    dev: false
+
+  /@slidev/theme-apple-basic@0.20.0:
+    resolution: {integrity: sha512-sjgxAyn63TNHsiwT/Iz2D8IjpuOg/x8l+nG2TTH3zg8XChIo7uYcNNApWH+i5zuBfaNHHUOaGLPaZw5s6fINQg==}
+    engines: {node: '>=14.0.0', slidev: '>=0.19.3'}
+    dependencies:
+      '@slidev/types': 0.22.7
+      codemirror-theme-vars: 0.1.1
+      prism-theme-vars: 0.2.4
+      theme-vitesse: 0.1.14
     dev: false
 
   /@slidev/theme-default@0.21.2:

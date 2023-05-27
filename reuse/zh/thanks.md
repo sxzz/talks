@@ -1,5 +1,5 @@
 ---
-layout: cover
+layout: center
 class: text-center pb-5
 title: 感谢!
 ---
@@ -16,8 +16,6 @@ title: 感谢!
 <div text-sm>
 <span>💖</span>
 <span op60>
-感谢
-<a href="https://github.com/antfu" target="_blank">Anthony Fu</a>，
 幻灯片由
 <img src="/slidev.svg" w-1em inline />
 <a href="https://sli.dev/" target="_blank"> Slidev</a>

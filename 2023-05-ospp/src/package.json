@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "slidev",
+    "build": "slidev build --base /2023-05-ospp/ --out ../../dist/2023-05-ospp",
+    "export": "slidev export --dark --output ../2023-05-ospp.pdf"
+  },
+  "dependencies": {
+    "@slidev/theme-apple-basic": "^0.20.0"
+  }
+}
