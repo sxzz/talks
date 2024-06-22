@@ -38,7 +38,7 @@ layout: fact
 layout: center
 ---
 
-<img src="https://camo.githubusercontent.com/2dfa6ee9831d2aec8b5faa3e316ddc6052c12d144f4e750a7651309270aa9a5b/68747470733a2f2f696d6733342e6464696d672e636e2f38352f372f32313032303835342d315f6f2e6a70673f323032322d30332d3038" h-130 />
+<img src="/book.png" h-130 />
 
 ---
 layout: intro-image

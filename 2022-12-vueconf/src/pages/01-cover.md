@@ -25,7 +25,7 @@ layout: center
 <div class="abs-br mx-10 my-8 flex scale-120">
   <div class="ml-3 flex flex-col text-right gap-1">
     <img
-      src="/vue-conf.svg"
+      src="/vueconf.svg"
       text="3xl"
       opacity="70"
     />
