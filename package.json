@@ -1,26 +1,42 @@
 {
   "name": "talks",
-  "type": "module",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "rimraf dist && pnpm -r run build",
-    "preview": "serve dist"
-  },
-  "dependencies": {
-    "@slidev/cli": "^0.49.11",
-    "@slidev/theme-default": "^0.25.0",
-    "@slidev/theme-seriph": "^0.25.0"
+    "dev": "tsx scripts/picker.ts dev --open",
+    "typecheck": "vue-tsc --noEmit",
+    "lint": "eslint ."
   },
   "devDependencies": {
-    "@iconify/json": "^2.2.221",
+    "@iconify/json": "^2.2.222",
+    "@slidev/cli": "^0.49.11",
+    "@slidev/client": "^0.49.11",
+    "@slidev/theme-default": "^0.25.0",
+    "@slidev/theme-seriph": "^0.25.0",
+    "@sxzz/eslint-config": "^3.13.0",
+    "@sxzz/prettier-config": "^2.0.2",
+    "@types/node": "^20.14.8",
+    "@types/prompts": "^2.4.9",
+    "@types/seedrandom": "^3.0.8",
+    "eslint": "^9.5.0",
+    "execa": "^9.3.0",
+    "markdown-it-magic-link": "^0.1.4",
     "playwright-chromium": "^1.44.1",
+    "prettier": "^3.3.2",
+    "prompts": "^2.4.2",
     "rimraf": "^5.0.7",
+    "seedrandom": "^3.0.5",
     "serve": "^14.2.3",
-    "unocss": "^0.61.0"
+    "tsx": "^4.15.7",
+    "typescript": "^5.5.2",
+    "unocss": "^0.61.0",
+    "vue-router": "^4.3.3"
   },
   "pnpm": {
     "overrides": {
-      "twoslash-vue": "0.2.7"
+      "is-core-module": "npm:@no-shims/is-core-module"
     }
-  }
+  },
+  "prettier": "@sxzz/prettier-config"
 }

@@ -10,7 +10,7 @@ layout: cover
 
 <div v-click>
 
-```ts
+```tsx
 // Foo.setup.tsx
 defineProps<{
   foo: string

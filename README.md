@@ -1,6 +1,9 @@
 # Talks
 
-Slides & code for my talks, using [Slidev](https://sli.dev).
+Slides & code for my talks.
+
+Strongly thanks to [Anthony Fu](https://github.com/antfu)
+and [Slidev](https://sli.dev).
 
 ###### 2024
 
