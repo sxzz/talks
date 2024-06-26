@@ -4,6 +4,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "allowImportingTsExtensions": true,
+    "strict": true,
     "noEmit": true,
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true

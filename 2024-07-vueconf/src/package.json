@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "slidev",
+    "build": "slidev build --base /2024-07-vueconf/ --out ../../dist/2024-07-vueconf",
+    "export": "slidev export --dark --per-slide --output ../2024-07-vueconf.pdf"
+  }
+}
