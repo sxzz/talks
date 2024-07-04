@@ -572,7 +572,8 @@ class: text-center
 </v-click>
 
 ---
-
+clicks: 6
+---
 <h1>架构 <sup text-5 op60 font-fast>architecture</sup></h1>
 <!-- native support -->
 <v-click>
@@ -581,8 +582,12 @@ class: text-center
       <!-- 上层的方框 -->
       <div class="grid grid-cols-2 gap-y-2 gap-x-3 mb-2">
         <div
-          class="border-1 border-white bg-gray/40 p-1 rounded" op-50
-          :class="$clicks >= 2 ? 'col-span-1' : 'col-span-2'"
+          class="border-1 border-white bg-gray/40 p-1 rounded"
+          transition="all duration-500 ease-in-out"
+          :class="[
+            ([0,1,2,4].includes($clicks)) ? 'op-100' : 'op-50',
+            ($clicks >= 4 ? 'col-span-1' : 'col-span-2'),
+          ]"
         >
           <p font-mono>@vitejs/plugin-vue</p>
           <p text="$text-secondary" flex items-center>
@@ -591,8 +596,13 @@ class: text-center
           </p>
         </div>
         <div
-          class="border-1 border-white bg-gray/40 p-1 rounded text-right" op-50
-          v-click="2" :class="$clicks >= 2 ? 'block' : '!hidden'"
+          v-click="4"
+          class="border-1 border-white bg-gray/40 p-1 rounded text-right"
+          transition="all duration-500 ease-in-out"
+          :class="[
+            $clicks >= 6 ? 'op-50' : 'op-100',
+            $clicks >= 4 ? 'block' : '!hidden',
+          ]"
         >
           <p font-mono>unplugin-vue-jsx-vapor</p>
           <p text="$text-secondary" w-full flex items-center justify-end>
@@ -601,8 +611,12 @@ class: text-center
           </p>
         </div>
         <div
-          class="border-1 border-white bg-gray/40 p-1 rounded" op-50
-          :class="$clicks >= 2 ? 'col-span-1' : 'col-span-2'"
+          class="border-1 border-white bg-gray/40 p-1 rounded"
+          transition="all duration-500 ease-in-out"
+          :class="[
+            ([0,1,2,4].includes($clicks)) ? 'op-100' : 'op-50',
+            ($clicks >= 4 ? 'col-span-1' : 'col-span-2'),
+          ]"
         >
           <p font-mono>@vue/compiler-sfc</p>
           <p text="$text-secondary" flex items-center>
@@ -612,23 +626,32 @@ class: text-center
         </div>
         <div
           class="border-1 border-white bg-gray/40 p-1 rounded text-right" op-0
-          :class="$clicks >= 2 ? 'block' : '!hidden'"
+          transition="all duration-500 ease-in-out"
+          :class="[$clicks >= 4 ? 'block' : '!hidden']"
         >
-          <!-- 占位符 -->
+          <!-- @vue/jsx-vapor 占位符 -->
           <p font-mono>@vue/jsx-vapor</p>
           <p>转换 JSX 到 IR 中间语言</p>
         </div>
       </div>
       <!-- 中间的方框 -->
-      <div class="border-1 border-white bg-gray/40 p-1 rounded mb-6">
-        <!-- @vue/compiler-vapor -->
+      <div
+        class="border-1 border-white bg-gray/40 p-1 rounded mb-6"
+        transition="all duration-500 ease-in-out"
+        :class="([2,5].includes($clicks)) ? 'op-50' : 'op-100'"
+      >
         <div mb-2>
           <p font-mono>@vue/compiler-vapor</p>
         </div>
         <div grid grid-cols-2 gap-y-2 gap-x-3>
+          <!-- @vue/compiler-vapor -->
           <div
             grid grid-cols-1 gap-2
-            :class="$clicks >= 2 ? 'col-span-1' : 'col-span-2'"
+            :class="[
+              ($clicks >= 4 ? 'col-span-1' : 'col-span-2'),
+              ($clicks >= 5) ? 'op-20' : 'op-100'
+            ]"
+            transition="all duration-500 ease-in-out"
           >
             <div class="border-1 border-white p-1 rounded">
               <p font-mono>[Parse]</p>
@@ -642,7 +665,12 @@ class: text-center
           <!-- @vue/jsx-vapor -->
           <div
             border-1 border-white text-right mt="-20" mb="-1" mr="-1" bg="gray/20" backdrop-blur-md p-1 rounded flex flex-col gap-2
-            v-click="2" :class="$clicks >= 2 ? 'flex' : '!hidden'"
+            v-click="4"
+            transition="all duration-500 ease-in-out"
+            :class="[
+              ($clicks >= 4 ? 'flex' : '!hidden'),
+              ($clicks === 5 ? 'op-50' : 'op-100'),
+            ]"
           >
             <div>
               <p font-mono>@vue/jsx-vapor</p>
@@ -660,7 +688,14 @@ class: text-center
               </div>
             </div>
           </div>
-          <div class="border-1 border-white p-1 rounded" col-span-2>
+          <div
+            class="border-1 border-white p-1 rounded" col-span-2
+            transition="all duration-500 ease-in-out"
+            :class="[
+              ($clicks === 5 ? 'op-50' : 'op-100'),
+              (($clicks === 6) ? 'text-right' : 'text-left'),
+            ]"
+          >
             <p font-mono>[Generate]</p>
             <p text="$text-secondary">根据 IR 生成 JS 代码</p>
           </div>
@@ -668,7 +703,14 @@ class: text-center
       </div>
       <div w-full h-8 />
       <!-- 底部的方框 -->
-      <div class="border-1 border-white bg-gray/40 p-1 rounded" op-50>
+      <div
+        class="border-1 border-white bg-gray/40 p-1 rounded"
+        transition="all duration-500 ease-in-out"
+        :class="[
+          (($clicks === 5 || $clicks === 2) ? 'op-50' : 'op-100'),
+          (($clicks === 6) ? 'text-right' : 'text-left'),
+        ]"
+      >
         <p>JS 代码</p>
         <p text="$text-secondary">最终产物</p>
       </div>
@@ -679,8 +721,9 @@ class: text-center
           absolute inset-y-0 w-10 translate-x="-1/2" flex="~ col" border="$color-sfc" pb-16
           transition="all duration-500 ease-in-out"
           :class="[
-            $clicks >= 1 ? 'translate-y-0' : 'translate-y--100',
-            $clicks >= 2 ? 'left-8/20' : 'left-10/20',
+            ($clicks >= 1 ? 'translate-y-0' : 'translate-y--100'),
+            ($clicks >= 4 ? 'left-8/20' : 'left-10/20'),
+            (($clicks >= 5) ? 'op-20' : 'op-100'),
           ]"
         >
           <div font-mono flex-1 text-center p-1 w-full border-4 border-b-none border="$color-sfc" rounded-t>
@@ -697,10 +740,10 @@ class: text-center
         </div>
         <!-- JSX -->
         <div
-          v-click="2"
+          v-click="4"
           absolute inset-y-0 w-10 left="12/20" translate-x="-1/2" flex="~ col" border="$color-jsx" pb-16
           transition="all duration-500 ease-in-out"
-          :class="$clicks >= 2 ? 'translate-y-0' : 'translate-y--100'"
+          :class="($clicks >= 4 ? 'translate-y-0' : 'translate-y--100')"
         >
           <div font-mono flex-1 text-center p-1 w-full border-4 border-b-none border="$color-jsx" rounded-t>
             JSX
