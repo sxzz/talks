@@ -399,7 +399,7 @@ class: text-center
 怎么搞？
 
 <v-clicks mt30 text-xl>
-    
+
 - 打磨渲染逻辑
 
 - 丢掉包袱，重装上阵！
@@ -573,9 +573,120 @@ class: text-center
 
 ---
 
-<h1>架构 <sup text-5 op60 font-fast>architecture</sup></h1>
+<h1>架构<sup text-5 op60 font-fast>architecture</sup></h1>
+<!-- native support -->
+<div class="architecture text-xs">
+  <div relative w-full rounded-lg shadow-lg text-white p=" t-12 x-20 b-2">
+    <!-- 上层的方框 -->
+    <div class="grid grid-cols-2 gap-y-2 gap-x-3 mb-2">
+      <div class="border-1 border-white bg-gray/40 p-1 rounded" op-50>
+        <p font-mono>@vitejs/plugin-vue</p>
+        <p text="$text-secondary" flex items-center>
+          <span>调用</span>
+          <span inline-block i-ri-arrow-down-double-fill />
+        </p>
+      </div>
+      <div class="border-1 border-white bg-gray/40 p-1 rounded text-right" op-50>
+        <p font-mono>unplugin-vue-jsx-vapor</p>
+        <p text="$text-secondary" w-full flex items-center justify-end>
+          <span inline-block i-ri-arrow-down-double-fill />
+          <span>调用</span>
+        </p>
+      </div>
+      <div class="border-1 border-white bg-gray/40 p-1 rounded" op-50>
+        <p font-mono>@vue/compiler-sfc</p>
+        <p text="$text-secondary" flex items-center>
+          <span>调用</span>
+          <span inline-block i-ri-arrow-down-double-fill />
+        </p>
+      </div>
+      <div class="border-1 border-white bg-gray/40 p-1 rounded text-right" op-0>
+        <!-- 占位符 -->
+        <p font-mono>@vue/jsx-vapor</p>
+        <p>转换 JSX 到 IR 中间语言</p>
+      </div>
+    </div>
+    <!-- 中间的方框 -->
+    <div class="border-1 border-white bg-gray/40 p-1 rounded mb-6">
+      <!-- @vue/compiler-vapor -->
+      <div mb-2>
+        <p font-mono>@vue/compiler-vapor</p>
+      </div>
+      <div grid grid-cols-2 gap-2>
+        <div grid grid-cols-1 gap-2>
+          <div class="border-1 border-white p-1 rounded">
+            <p font-mono>[Parse]</p>
+            <p text="$text-secondary">解析 SFC 生成 AST</p>
+          </div>
+          <div class="border-1 border-white p-1 rounded">
+            <p font-mono>[Transform]</p>
+            <p text="$text-secondary">转换 AST 到 IR 中间语言</p>
+          </div>
+        </div>
+        <!-- @vue/jsx-vapor -->
+        <div border-1 border-white text-right mt="-20" mb="-1" bg="gray/20" backdrop-blur-md p-1 rounded flex flex-col gap-2>
+          <div>
+            <p font-mono>@vue/jsx-vapor</p>
+            <p text="$text-secondary">转换 JSX 到 IR 中间语言</p>
+          </div>
+          <div flex-1 />
+          <div grid grid-cols-1 gap-2>
+            <div class="border-1 border-white p-1 rounded">
+              <p font-mono>[Parse]</p>
+              <p text="$text-secondary">解析 JSX 生成 AST</p>
+            </div>
+            <div class="border-1 border-white p-1 rounded">
+              <p font-mono>[Transform]</p>
+              <p text="$text-secondary">转换 AST 到 IR 中间语言</p>
+            </div>
+          </div>
+        </div>
+        <div class="border-1 border-white p-1 rounded" col-span-2>
+          <p font-mono>[Generate]</p>
+          <p text="$text-secondary">根据 IR 生成 JS 代码</p>
+        </div>
+      </div>
+    </div>
+    <div w-full h-8 />
+    <!-- 底部的方框 -->
+    <div class="border-1 border-white bg-gray/40 p-1 rounded" op-50>
+      <p>JS 代码</p>
+      <p text="$text-secondary">最终产物</p>
+    </div>
+    <!-- 箭头 -->
+    <div>
+      <!-- SFC -->
+      <div absolute inset-y-0 w-10 left="8/20" translate-x="-1/2" flex="~ col" border="$color-sfc" pb-16>
+        <div font-mono flex-1 text-center p-1 w-full border-4 border-b-none border="$color-sfc" rounded-t>
+          SFC
+        </div>
+        <div ml="-2" w-14 flex>
+          <div w-2 border-t-4 border="$color-sfc" rounded-tl />
+          <div w-1.5 border-t-4 border="$color-sfc" rounded-br />
+          <div w-10 />
+          <div w-1.5 border-t-4 border="$color-sfc" rounded-bl />
+          <div w-2 border-t-4 border="$color-sfc" rounded-tr />
+        </div>
+        <div w-10 h-10 mt="-5" border-b-4 border-r-4 border="$color-sfc" rotate-45 rounded-br />
+      </div>
+      <!-- JSX -->
+      <div absolute inset-y-0 w-10 left="12/20" translate-x="-1/2" flex="~ col" border="$color-jsx" pb-16>
+        <div font-mono flex-1 text-center p-1 w-full border-4 border-b-none border="$color-jsx" rounded-t>
+          JSX
+        </div>
+        <div ml="-2" w-14 flex>
+          <div w-2 border-t-4 border="$color-jsx" rounded-tl />
+          <div w-1.5 border-t-4 border="$color-jsx" rounded-br />
+          <div w-10 />
+          <div w-1.5 border-t-4 border="$color-jsx" rounded-bl />
+          <div w-2 border-t-4 border="$color-jsx" rounded-tr />
+        </div>
+        <div w-10 h-10 mt="-5" border-b-4 border-r-4 border="$color-jsx" rotate-45 rounded-br />
+      </div>
+    </div>
+  </div>
+</div>
 
-native support
 
 ---
 
@@ -631,7 +742,7 @@ class: text-center
   <GitHub v-click transition transition-400 ease-out
           :class="$clicks < 2 && 'translate-x-10'"
           id="sxzz" label="Vue Vapor 作者" name="Kevin Deng" />
-  
+
   <GitHub v-click="3" transition transition-400 ease-out
           :class="$clicks < 3 && 'translate-x-10'"
           id="LittleSound" label="活跃开发者" name="Rizumu Ayaka" />

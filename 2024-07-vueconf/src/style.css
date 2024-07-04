@@ -84,3 +84,16 @@ h6 {
   width: 1.6em;
   border-radius: 50%;
 }
+
+.architecture {
+  --un-border-opacity: 0.7;
+  --color-sfc: rgb(74 222 128 / var(--un-border-opacity));
+  --color-jsx: rgb(96 165 250 / var(--un-border-opacity));
+
+  --text-secondary: rgb(163 163 163);;
+}
+.architecture p {
+  padding: 0;
+  margin: 0;
+  line-height: 1.3;
+}
