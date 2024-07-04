@@ -367,7 +367,6 @@ class: text-center
 之前提到了 Vapor 可以减少包体积，那到底有多少呢？
 
 [click] 目前 Vapor 的包体积比 vDOM 模式减少了 26.95%。大概是 1/4 左右。
-能不能再减少一些呢？我们先按下不表，来看后面。
 -->
 
 ---
@@ -384,7 +383,7 @@ class: text-center
 />
 
 <!--
-目前 Vapor 的性能如何呢？
+再来看看 Vapor 的性能如何
 
 [click] 这是 Vapor 与 Solid、Svelte 和 Vue 3 vDOM 模式的性能图，跑的是 js-framework-benchmark 的基准测试。
 
@@ -410,7 +409,7 @@ class: text-center
 </v-clicks>
 
 <!--
-我们说 Vapor 还有提升空间，那么我们要怎么变快呢？
+刚刚说 Vapor 还有提升空间，那么我们要怎么变快和变小呢？
 
 [click] 首先我们会继续打磨渲染逻辑，优化性能。因为目前以开发优先级来说，功能实现是优先于性能优化的。
 
@@ -426,9 +425,9 @@ Vapor 现在是朝着 vDOM 的测试集来做的。但是有的时候完全和 v
 layout: statement
 ---
 
-<div transition transition-500 :class="$clicks > 0 && 'translate-y--30'">
-  <div transition transition-500 font-fast text-4 mb2 :class="$clicks > 0 ? 'op70' : 'op0'" line-through>breaking changes</div>
-  <h1 transition transition-500 v-mark.red.linethrough="1" w-fit ma="!" :class="$clicks === 1 && 'op80 scale-80'">破坏性变动</h1>
+<div transition transition-500 ease-in-out :class="$clicks > 0 && 'translate-y--30'">
+  <div transition transition-500 ease-in-out font-fast text-4 mb2 :class="$clicks > 0 ? 'op70' : 'op0'" line-through>breaking changes</div>
+  <h1 transition transition-500 ease-in-out v-mark.red.linethrough="1" w-fit ma="!" :class="$clicks === 1 && 'op80 scale-80'">破坏性变动</h1>
 </div>
 
 <h1 v-click transition transition-500 :class="$clicks > 0 && 'scale-150'">🙅<br>No!</h1>
@@ -479,7 +478,7 @@ Vue Vapor 是 Vue vDOM 模式的子集。
   v-click="2"
   absolute w-60 h-60 left-166 top-40 border="~ blue/50 rounded-full"
   bg-blue:10 text-2xl text-blue-200 flex="~ gap-3 items-center justify-center"
-  transition-all duration-500
+  transition-all duration-500 ease-in-out
   :class="$clicks >= 2 ? '' : 'scale-0'"
 >
   <div flex="~ col items-center justify-center" gap2>
@@ -517,14 +516,14 @@ Vue Vapor 是 Vue vDOM 模式的子集。
 
 <v-clicks>
 
-- VueUse
+- {VueUse}
 
-- VitePress
-- Vue Router / Pinia
-- Nuxt
+- {VitePress}
+- {Vue Router} <span op80> / Pinia</span>
+- {Nuxt}
 - UI 库
   - Naive UI / Element Plus / Vuetify...
-- Elk
+- {Elk}
 - <span v-mark.red.linethrough="8">Vue 2</span>
 
 </v-clicks>
@@ -532,31 +531,59 @@ Vue Vapor 是 Vue vDOM 模式的子集。
 <!--
 我们再来看看兼容性方面
 
-[click] VueUse 是 Vue 的一个工具库，它是基于 Vue 3 的，所以它和 Vapor 是兼容的。
+[click] Vapor 目前兼容大部分的 VueUse 函数。
+
+得益于 Vapor 的响应性系统和 Vue 3 的响应性系统是完全一致的。
+除了一些和组件相关的，其他都可以直接使用。
+
+[click] Vapor 会在第一时间兼容 VitePress、
+[click] Vue Router、Pinia 等官方项目
+[click] Nuxt 也会在未来支持 Vapor
+
+[click] UI 库方面，像 Naive UI、Element Plus、Vuetify，我们也会协助社区做适配。
+这个适配成本不会像 Vue 2 到 Vue 3 那么高，因为 Vapor 和 vDOM 模式的用户侧 API 是一致的。
+
+[click] 我们社区的项目 Elk 也会在未来支持 Vapor。Elk 可以视为 Vue 和 Nuxt 的最佳实践。
+
+[click] 那 Vue 2 会不会支持 Vapor 呢？[click] 并不会支持，Vue 2 已经在今年停止维护了。
+所以我们不会在 Vue 2 上做任何新的特性支持。
 -->
 
 ---
 
-<h1>功能规划 <sup text-5 op60 font-fast>feature plan</sup></h1>
+<h1 important-mb10>进度 <sup text-5 op60 font-fast>progress</sup></h1>
 
-TODO
+- ✅ SFC 编译
+- ✅ [基础组件能力](https://github.com/vuejs/core-vapor/issues/197)
+  - 内置指令
+  - 生命周期钩子
+  - ...
+
+<div mt4 v-click>
+
+- 🚧 性能调优
+- 🚧 SSR / 水合 (hydration)
+- 🚧 DevTools
+- 🚧 异步组件
+- 🚧 内置组件
+
+</div>
+
+<v-click>
+
+- {VitePress} 将会在今年底支持，并发布 beta 版
+
+</v-click>
 
 <!--
-- Roadmap in the future: RFC -> Vue Macros -> Vue Vapor -> Vue core
-- feature flag /
-- default to TS
--->
+目前的进度如何呢？
 
----
+目前我们已经完成了大部分的基础功能，比如 SFC 编译、各种指令、生命周期钩子等等。
+刚刚的投票的那个页面，也是用 Vapor 实现的。
 
-<h1>目前进度 <sup text-5 op60 font-fast>progress</sup></h1>
+[click] 接下来我们会继续优化性能、支持 SSR 和水合（hydration）、适配 DevTools、支持异步组件和完善内置组件等等。
 
-TODO
-
-<!--
-- When will it be ready?
-- VitePress in end of 2024
-  Vote app
+[click] 我们计划 Vapor 在今年底适配 VitePress，然后发布第一个 beta 版本
 -->
 
 ---
@@ -565,14 +592,33 @@ class: text-center
 
 # DevTools
 
-<v-click>
-  <div flex w-full items-center justify-center gap2>
-    <span op80>感谢 Vue DevTools 团队</span>
-    <img src="https://avatars.githubusercontent.com/u/22515951" w-6 rounded-full />
-  </div>
+<div flex w-full items-center justify-center gap2>
+  <div op80>感谢 Vue DevTools 团队</div>
+  <img src="https://avatars.githubusercontent.com/u/22515951" w-6 rounded-full />
+  <a op80 href="https://github.com/webfansplz" target="_blank">webfansplz</a>
+</div>
 
-  <img ma src="/devtools.jpg" h-100 mt-4 />
-</v-click>
+<img ma src="/devtools.jpg" h-105 mt-0 op80 />
+
+<!--
+说到 DevTools，目前 Vapor 已经部分支持 Vue DevTools 了。感谢 Vue DevTools 团队的支持！
+-->
+
+---
+layout: fact
+clicks: 1
+---
+
+<h1>
+支持 JSX
+<span transition transition-500 :class="$clicks > 0 && 'op0'">?</span>
+</h1>
+
+<!--
+也有人关心 Vapor 会支持 JSX 吗？[click] 答案是会支持 JSX。并且会比 vDOM 模式有更好的支持。
+
+未来我们可能会直接在 Vue 的核心库中做支持。这得益于 Vapor 编译器的架构更加灵活，更容易支持 JSX。
+-->
 
 ---
 clicks: 6
@@ -781,36 +827,79 @@ clicks: 6
 
 ---
 
-<h1>
-支持 JSX !
-<span transition transition-500 :class="$clicks > 0 && 'op0'">?</span>
-</h1>
-
-<div v-click>
-222
-</div>
-
-<!--
-也有人关心 Vapor 会支持 JSX 吗？[click] 答案是会支持 JSX。并且会比 vDOM 模式有更好的支持。
-未来我们可能会直接在 Vue 的核心库中做支持。
-
-[click] 这得益于 Vapor 的架构有了 IR 中间语言这层抽象。
--->
-
----
-
 # interop
 
 TODO
 
 ---
 
-<h1>迁移策略 <sup text-5 op60 font-fast>migration</sup></h1>
+<h1>功能规划 <sup text-5 op60 font-fast>feature plan</sup></h1>
 
-TODO
+<div overflow-hidden transition-width transition-500 mt20
+     :class="[$clicks === 0 && 'w-0', $clicks === 1 && 'w-60.4', $clicks === 2 && 'w-98.93', $clicks === 3 && 'w-157.9', $clicks === 4 && 'w-full']">
+
+```mermaid
+graph LR
+RFC([RFC 意见征求稿]) --> VueMacros([Vue Macros])
+-->|Feature Flag| VueVapor([Vue Vapor])
+--> VueCore([Vue vDOM])
+```
+
+</div>
+
+<div mt15>
+<v-clicks>
+
+1. 提出 RFC 意见征求稿
+
+2. Vue Macros 第三方项目先试验
+3. 以 Feature Flag 的形式引入 Vue Vapor
+4. 移植到 Vue vDOM
+
+</v-clicks>
+</div>
+
+<style>
+.mermaid {
+  text-align: center;
+  width: 55rem;
+}
+</style>
 
 <!--
-2
+关于未来的新功能规划，我们的计划是
+- [click] 首先如果团队或者社区有新的功能，会先提出 RFC 意见征求稿。
+- [click] 我们可能会先在 Vue Macros 第三方项目实现这个功能，然后继续等待更多的反馈。
+- [click] 如果这个功能通过了，之后会以 Feature Flag 的形式引入 Vue Vapor。
+feature flag 就是一个开关，可以在 Vue 项目中打开或关闭某个功能。
+
+- [click] 最后再移植到 Vue vDOM 中。
+
+也就是说，Vapor 将比 vDOM 快一步，首先尝试新的功能。因为 Vapor 没有什么历史包袱。
+这样的流程可以让我们更好地控制新功能的风险，社区也可以更好地参与到 Vue 的发展中。这是目前计划的 Vue 3 发展模式。
+
+至于 Vue 4，我们充分吸取了 Vue 2 到 Vue 3 的教训，我们会以先在 minor 中版本中引入新的 feature flag，然后再在 Vue 4 中废弃掉或改变它的默认值。但是目前没有计划 Vue 4 的发布，可能需要等待 feature flag 达到一定数量后才会考虑。
+-->
+
+---
+
+<h1>总结 <sup text-5 op60 font-fast>overview</sup></h1>
+
+<div mt20>
+<v-clicks>
+
+- Vapor 是 Vue 的一个新的开始
+
+- Vapor 是 Vue vDOM 模式的子集，尝试做减法
+- Vapor 会持续优化性能和包体积
+- Vapor 将有更好的 JSX 支持
+- Vapor 会在今年底发布 beta 版，并支持 {VitePress}
+
+</v-clicks>
+</div>
+
+<!--
+总结一下（读PPT）
 -->
 
 ---
@@ -848,12 +937,14 @@ class: text-center
 <!--
 在这同样要感谢一下 Vue Vapor 的贡献者们
 
-[click] 特别是 Evan You，第一版的 Vapor 就是 Evan 写的，现在也在帮助我们做一些重要的设计和决策。
+[click] 特别是 Evan You，第一版的 Vapor 就是 Evan 写的，现在也在做重要的设计和决策。
 
 [click] 然后就是我自己，我目前负责 Vapor 的维护和开发。
 
 [click] 还有一些活跃的贡献者，比如小音、Ubugeeei
 和 Doctor Wu 等等，和 PPT 上没有提及到的社区贡献者。
+
+同时需要再次感谢一下小音和 Doctor Wu，本次 PPT 也离不开他们的帮助！
 -->
 
 ---
@@ -876,7 +967,7 @@ class: text-center
 <!--
 最后，感谢所有赞助我的人，你们的支持是我继续开发的动力。
 
-如果你也想加速 Vapor 的发展，可以在 GitHub 上赞助我或 Vue。
+如果你也想加速 Vapor 的发展，可以在 GitHub 上赞助我和其他的活跃开发者。
 -->
 
 ---
