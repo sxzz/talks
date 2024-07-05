@@ -563,6 +563,7 @@ Vue Vapor 是 Vue vDOM 模式的子集。
   - 内置指令
   - 生命周期钩子
   - ...
+- ✅ 投票 App
 
 <div mt4 v-click>
 
@@ -646,7 +647,6 @@ clicks: 6
 ---
 
 <!-- TODO native support -->
-<!-- Made by @LittleSound, thanks to her! -->
 <h1>架构 <sup text-5 op60 font-fast>architecture</sup></h1>
 
 <Architecture v-click />
@@ -671,11 +671,15 @@ clicks: 6
 
 [click] 插件将会调用核心的 JSX 的编译器。这个 JSX 编译器有自己的 parse 和 transform 过程。
 但最终的 generate 过程是可以复用 Vapor 编译器的。因为 SFC 和 JSX 的 IR 遵循同一套的规范。
+
+另外补充一点，Vapor 的运行时和编译器类似，目前是一个合在一起的包，未来会拆分成一个通用的运行时和
+一个特定于浏览器 DOM API 的包。这样 Vapor 和 vDOM 一样，很容易就支持其他平台，
+比如说 native 和 小程序平台。
 -->
 
 ---
 
-<h1 important-mb10>融合 <sup text-5 op60 font-fast>integration</sup></h1>
+<h1 important-mb10>融合 <sup text-5 op60 font-fast>fusion</sup></h1>
 
 <v-click>
 
@@ -708,12 +712,23 @@ clicks: 6
 
 <div
   v-click="1"
-  absolute w-100 h-100 left-110 top-50 border="~ green rounded-full"
+  absolute w-50 h-50 left-110 top-70 border="~ green rounded-full"
   bg-green:20 text-3xl text-green flex items-start justify-center
 >
   <div flex="~ col" items-center justify-center mt6 gap1 text-2xl font-semibold>
     <span>vDOM</span>
-    <span mt30 tracking-widest>...</span>
+    <span mt10 tracking-widest>...</span>
+  </div>
+</div>
+
+<div
+  v-click="1"
+  absolute w-50 h-50 left-165 top-70 border="~ purple rounded-full"
+  bg-purple:20 text-3xl text-purple flex items-start justify-center
+>
+  <div flex="~ col" items-center justify-center mt6 gap1 text-2xl font-semibold>
+    <span>Vapor</span>
+    <span mt10 tracking-widest>...</span>
   </div>
 </div>
 
@@ -723,7 +738,7 @@ clicks: 6
 [click] 答案是不一定。Vapor 组件会支持在 vDOM 模式中使用，反之亦然。
 当然也支持纯 Vapor 模式。
 
-这样可以让你更好地平滑迁移，不用一下子全部到 Vapor 上。对于性能热点的组件，
+这样可以让你更好地平滑过渡，不用一下子全部到 Vapor 上。对于性能热点的组件，
 可以先迁移到 Vapor 上，其他的组件可以继续使用 vDOM 模式。
 -->
 
@@ -787,9 +802,9 @@ feature flag 就是一个开关，可以在 Vue 项目中打开或关闭某个�
 - Vapor 是 Vue 的一个新的开始
 
 - Vapor 是 Vue vDOM 模式的子集，尝试做减法
-- Vapor 会持续优化性能和包体积
+- Vapor 将持续优化性能和包体积
 - Vapor 将有更好的 JSX 支持
-- Vapor 会在今年底发布 beta 版，并支持 {VitePress}
+- Vapor 将在今年底发布 beta 版，并支持 {VitePress}
 
 </v-clicks>
 </div>
@@ -830,7 +845,7 @@ class: text-center
           id="doctor-wu" label="活跃开发者" name="Doctor Wu" />
 <GitHub v-click="4" transition transition-400 ease-out
           :class="$clicks < 4 && 'translate-x-10'"
-          id="zhiyuanzmj" label="JSX 开发者" name="高飞" />
+          id="zhiyuanzmj" label="Vapor JSX 作者" name="高飞" />
 
 </div>
 

@@ -13,8 +13,8 @@ defineProps<{
         :src="`https://github.com/${id}.png`"
         :alt="id"
         mb2
-        h-30
-        w-30
+        h-24
+        w-24
         rounded-full
         object-cover
       />
@@ -23,7 +23,6 @@ defineProps<{
     <a
       :href="`https://github.com/${id}`"
       target="_blank"
-      text-xl
       font-semibold
       border-none="!"
       tracking-wider

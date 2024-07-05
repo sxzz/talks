@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useSlideContext } from '@slidev/client'
 
+// Made by @LittleSound. Thanks to her!
 const { $clicks } = useSlideContext()
 </script>
 
@@ -296,9 +297,12 @@ const { $clicks } = useSlideContext()
         </div>
       </div>
     </div>
-    <p relative text-right text-xs mt4="!" text="$text-secondary">
-      IR = 中间语言 ｜ AST = 抽象语法树 ｜ SFC = 单文件组件 ｜ JSX = JavaScript
-      XML 语法
-    </p>
+    <div mt4 flex justify-between text-xs text="$text-secondary" font-semibold>
+      <div>由 Rizumu Ayaka 制作</div>
+      <div>
+        IR = 中间语言 ｜ AST = 抽象语法树 ｜ SFC = 单文件组件 ｜ JSX =
+        JavaScript XML 语法
+      </div>
+    </div>
   </div>
 </template>
