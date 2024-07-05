@@ -578,7 +578,11 @@ clicks: 6
 <!-- native support -->
 <v-click>
   <div class="architecture text-xs mt--8">
-    <div relative w-full rounded-lg shadow-lg text-white p="t-8 x-20 b-2">
+    <div
+      relative w-full rounded-lg shadow-lg text-white p="t-8 b-2"
+      transition="all duration-500 ease-in-out"
+      :class="[$clicks >= 4 ? 'px-30' : 'px-60']"
+    >
       <!-- 上层的方框 -->
       <div class="grid grid-cols-2 gap-y-2 gap-x-3 mb-2">
         <div
@@ -637,7 +641,6 @@ clicks: 6
       <!-- 中间的方框 -->
       <div
         class="border-1 border-white bg-gray/40 p-1 rounded mb-6"
-        transition="all duration-500 ease-in-out"
         :class="([2,5].includes($clicks)) ? 'op-50' : 'op-100'"
       >
         <div mb-2>
@@ -647,7 +650,7 @@ clicks: 6
             transition="all duration-500 ease-in-out"
             :class="([6].includes($clicks) ? 'op-20' : 'op-100')"
           >
-            <p>SFC <span inline-block relative top-0.5 i-ri-arrow-right-fill /> IR</p>
+            <p>SFC <span inline-block relative top-0.5 i-ri-arrow-right-fill /> JS Code</p>
           </p>
         </div>
         <div grid grid-cols-2 gap-y-2 gap-x-3>
@@ -671,13 +674,14 @@ clicks: 6
           </div>
           <!-- @vue/jsx-vapor -->
           <div
-            border-1 border-white text-right mt="-24.75" mb="-1" mr="-1" bg="gray/20" backdrop-blur-md p-1 rounded flex flex-col gap-2
-            shadow
+            border-1 border-white text-right mt="-24.75" mb="-1" mr="-1" p-1 rounded flex flex-col gap-2
+            shadow overflow-hidden
             v-click="4"
-            transition="all duration-500 ease-in-out"
+            transition="all duration-500 max-height-500 ease-in-out"
             :class="[
               ($clicks >= 4 ? 'flex' : '!hidden'),
               ($clicks === 5 ? 'op-50' : 'op-100'),
+              ([6].includes($clicks) ? 'max-h-200 bg-gray/20 backdrop-blur-md !duration-2000' : 'max-h-11 bg-gray/50'),
             ]"
           >
             <div>
@@ -700,8 +704,8 @@ clicks: 6
             class="border-1 border-white p-1 rounded" col-span-2
             transition="all duration-500 ease-in-out"
             :class="[
-              ($clicks === 5 ? 'op-50' : 'op-100'),
               (($clicks === 6) ? 'text-right' : 'text-left'),
+              (($clicks < 4 | $clicks === 6) ? 'w-full' : 'w-[49%] !duration-0'),
             ]"
           >
             <p text="$text-secondary" font-mono>[Generate]</p>
