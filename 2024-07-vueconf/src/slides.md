@@ -78,14 +78,14 @@ class: p-20
 
 ---
 layout: statement
-growHide: "true"
+growHide: 'true'
 ---
 
 ## 👂 听过 Vue Vapor 吗？
 
-<section class="flex justify-between">
-  <img v-click src="/vvv.png" w="1/3" ma mt20 rounded-2xl />
-  <Analysis v-if="$slidev.nav.currentPage === 3 || $slidev.nav.currentPage === 4" v-click />
+<section flex items-center justify-around mt="-14">
+  <img v-click src="/vvv.png" w="1/4" rounded-2xl translate-x="20" />
+  <Analysis v-click v-if="$slidev.nav.currentPage === 3 || $slidev.nav.currentPage === 4" scale-70 />
 </section>
 
 <!--
@@ -623,8 +623,10 @@ clicks: 1
 ---
 clicks: 6
 ---
+
+<!-- Made by @LittleSound, thanks to her! -->
 <h1>架构 <sup text-5 op60 font-fast>architecture</sup></h1>
-<!-- native support -->
+<!-- TODO native support -->
 <v-click>
   <div class="architecture text-xs mt--8">
     <div
@@ -824,6 +826,9 @@ clicks: 6
   <p text-xs relative text-right top="-2" text="$text-secondary">IR = 中间语言 ｜ AST = 抽象语法树 ｜ SFC = 单文件组件 ｜ JSX = JavaScript XML 语法</p>
 </v-click>
 
+<!--
+h
+-->
 
 ---
 
@@ -883,7 +888,7 @@ feature flag 就是一个开关，可以在 Vue 项目中打开或关闭某个�
 
 ---
 
-<h1>总结 <sup text-5 op60 font-fast>overview</sup></h1>
+<h1>总结 <sup text-5 op60 font-fast>recap</sup></h1>
 
 <div mt20>
 <v-clicks>
@@ -923,15 +928,16 @@ class: text-center
           :class="$clicks < 2 && 'translate-x-10'"
           id="sxzz" label="Vue Vapor 作者" name="Kevin Deng" />
 
-  <GitHub v-click="3" transition transition-400 ease-out
+<GitHub v-click="3" transition transition-400 ease-out
           :class="$clicks < 3 && 'translate-x-10'"
           id="LittleSound" label="活跃开发者" name="Rizumu Ayaka" />
-  <GitHub v-click="3" transition transition-400 ease-out
+<GitHub v-click="3" transition transition-400 ease-out
           :class="$clicks < 3 && 'translate-x-10'"
           id="Ubugeeei" label="活跃开发者" />
-  <GitHub v-click="3" transition transition-400 ease-out
+<GitHub v-click="3" transition transition-400 ease-out
           :class="$clicks < 3 && 'translate-x-10'"
           id="doctor-wu" label="活跃开发者" name="Doctor Wu" />
+
 </div>
 
 <!--
