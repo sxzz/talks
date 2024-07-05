@@ -577,8 +577,8 @@ clicks: 6
 <h1>架构 <sup text-5 op60 font-fast>architecture</sup></h1>
 <!-- native support -->
 <v-click>
-  <div class="architecture text-xs">
-    <div relative w-full rounded-lg shadow-lg text-white p=" t-12 x-20 b-2">
+  <div class="architecture text-xs mt--8">
+    <div relative w-full rounded-lg shadow-lg text-white p="t-8 x-20 b-2">
       <!-- 上层的方框 -->
       <div class="grid grid-cols-2 gap-y-2 gap-x-3 mb-2">
         <div
@@ -589,10 +589,10 @@ clicks: 6
             ($clicks >= 4 ? 'col-span-1' : 'col-span-2'),
           ]"
         >
-          <p font-mono>@vitejs/plugin-vue</p>
-          <p text="$text-secondary" flex items-center>
-            <span>调用</span>
-            <span inline-block i-ri-arrow-down-double-fill />
+          <p text="$text-secondary" font-mono>@vitejs/plugin-vue</p>
+          <p text-sm w-full flex items-center>
+            <span inline-block i-ri-arrow-down-fill />
+            <span>Call</span>
           </p>
         </div>
         <div
@@ -604,10 +604,10 @@ clicks: 6
             $clicks >= 4 ? 'block' : '!hidden',
           ]"
         >
-          <p font-mono>unplugin-vue-jsx-vapor</p>
-          <p text="$text-secondary" w-full flex items-center justify-end>
-            <span inline-block i-ri-arrow-down-double-fill />
-            <span>调用</span>
+          <p text="$text-secondary" font-mono>unplugin-vue-jsx-vapor</p>
+          <p text-sm w-full flex items-center justify-end>
+            <span>Call</span>
+            <span inline-block i-ri-arrow-down-fill />
           </p>
         </div>
         <div
@@ -618,10 +618,10 @@ clicks: 6
             ($clicks >= 4 ? 'col-span-1' : 'col-span-2'),
           ]"
         >
-          <p font-mono>@vue/compiler-sfc</p>
-          <p text="$text-secondary" flex items-center>
-            <span>调用</span>
-            <span inline-block i-ri-arrow-down-double-fill />
+          <p text="$text-secondary" font-mono>@vue/compiler-sfc</p>
+          <p text-sm w-full flex items-center>
+            <span inline-block i-ri-arrow-down-fill />
+            <span>Call</span>
           </p>
         </div>
         <div
@@ -631,7 +631,7 @@ clicks: 6
         >
           <!-- @vue/jsx-vapor 占位符 -->
           <p font-mono>@vue/jsx-vapor</p>
-          <p>转换 JSX 到 IR 中间语言</p>
+          <p>JSX ➡️ IR</p>
         </div>
       </div>
       <!-- 中间的方框 -->
@@ -641,7 +641,14 @@ clicks: 6
         :class="([2,5].includes($clicks)) ? 'op-50' : 'op-100'"
       >
         <div mb-2>
-          <p font-mono>@vue/compiler-vapor</p>
+          <p text="$text-secondary" font-mono>@vue/compiler-vapor</p>
+          <p
+            text-sm
+            transition="all duration-500 ease-in-out"
+            :class="([6].includes($clicks) ? 'op-20' : 'op-100')"
+          >
+            <p>SFC <span inline-block relative top-0.5 i-ri-arrow-right-fill /> IR</p>
+          </p>
         </div>
         <div grid grid-cols-2 gap-y-2 gap-x-3>
           <!-- @vue/compiler-vapor -->
@@ -649,22 +656,23 @@ clicks: 6
             grid grid-cols-1 gap-2
             :class="[
               ($clicks >= 4 ? 'col-span-1' : 'col-span-2'),
-              ($clicks >= 5) ? 'op-20' : 'op-100'
+              ([6].includes($clicks) ? 'op-20' : 'op-100'),
             ]"
             transition="all duration-500 ease-in-out"
           >
             <div class="border-1 border-white p-1 rounded">
-              <p font-mono>[Parse]</p>
-              <p text="$text-secondary">解析 SFC 生成 AST</p>
+              <p text="$text-secondary" font-mono>[Parse]</p>
+              <p text-sm><p>SFC <span inline-block relative top-0.5 i-ri-arrow-right-fill /> AST</p></p>
             </div>
             <div class="border-1 border-white p-1 rounded">
-              <p font-mono>[Transform]</p>
-              <p text="$text-secondary">转换 AST 到 IR 中间语言</p>
+              <p text="$text-secondary" font-mono>[Transform]</p>
+              <p text-sm><p>SFC AST <span inline-block relative top-0.5 i-ri-arrow-right-fill /> IR</p></p>
             </div>
           </div>
           <!-- @vue/jsx-vapor -->
           <div
-            border-1 border-white text-right mt="-20" mb="-1" mr="-1" bg="gray/20" backdrop-blur-md p-1 rounded flex flex-col gap-2
+            border-1 border-white text-right mt="-24.75" mb="-1" mr="-1" bg="gray/20" backdrop-blur-md p-1 rounded flex flex-col gap-2
+            shadow
             v-click="4"
             transition="all duration-500 ease-in-out"
             :class="[
@@ -673,18 +681,18 @@ clicks: 6
             ]"
           >
             <div>
-              <p font-mono>@vue/jsx-vapor</p>
-              <p text="$text-secondary">转换 JSX 到 IR 中间语言</p>
+              <p text="$text-secondary" font-mono>@vue/jsx-vapor</p>
+              <p text-sm><p>JSX <span inline-block relative top-0.5 i-ri-arrow-right-fill /> IR</p></p>
             </div>
             <div flex-1 />
             <div grid grid-cols-1 gap-2>
               <div class="border-1 border-white p-1 rounded">
-                <p font-mono>[Parse]</p>
-                <p text="$text-secondary">解析 JSX 生成 AST</p>
+                <p text="$text-secondary" font-mono>[Parse]</p>
+                <p text-sm>JSX <span inline-block relative top-0.5 i-ri-arrow-right-fill /> AST</p>
               </div>
               <div class="border-1 border-white p-1 rounded">
-                <p font-mono>[Transform]</p>
-                <p text="$text-secondary">转换 AST 到 IR 中间语言</p>
+                <p text="$text-secondary" font-mono>[Transform]</p>
+                <p text-sm>JSX AST <span inline-block relative top-0.5 i-ri-arrow-right-fill />  IR</p>
               </div>
             </div>
           </div>
@@ -696,12 +704,12 @@ clicks: 6
               (($clicks === 6) ? 'text-right' : 'text-left'),
             ]"
           >
-            <p font-mono>[Generate]</p>
-            <p text="$text-secondary">根据 IR 生成 JS 代码</p>
+            <p text="$text-secondary" font-mono>[Generate]</p>
+            <p text-sm>IR <span inline-block relative top-0.5 i-ri-arrow-right-fill />  JS Code</p>
           </div>
         </div>
       </div>
-      <div w-full h-8 />
+      <div w-full h-4 />
       <!-- 底部的方框 -->
       <div
         class="border-1 border-white bg-gray/40 p-1 rounded"
@@ -711,8 +719,8 @@ clicks: 6
           (($clicks === 6) ? 'text-right' : 'text-left'),
         ]"
       >
-        <p>JS 代码</p>
-        <p text="$text-secondary">最终产物</p>
+        <p text="$text-secondary">JS Code</p>
+        <p text-sm>Final Product｜最终产物</p>
       </div>
       <!-- 箭头 -->
       <div>
@@ -760,6 +768,7 @@ clicks: 6
       </div>
     </div>
   </div>
+  <p text-xs relative text-right top="-2" text="$text-secondary">IR = 中间语言 ｜ AST = 抽象语法树 ｜ SFC = 单文件组件 ｜ JSX = JavaScript XML 语法</p>
 </v-click>
 
 
