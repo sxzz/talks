@@ -92,13 +92,13 @@ onUnmounted(() => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 16px;
+  font-size: 18px;
   --at-apply: 'font-semibold';
 }
 
 .cell-data {
   margin-top: 8px;
-  font-size: 30px;
+  font-size: 32px;
   --at-apply: 'font-mono font-bold';
 }
 </style>

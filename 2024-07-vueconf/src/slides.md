@@ -353,7 +353,7 @@ class: text-center
 
 <div v-click mt30>
   <template v-if="$clicks === 1">
-    <AnimateNumber v-slot="{ number, target }" :value="26.95" :duration="500">
+    <AnimateNumber v-slot="{ number, target }" :value="33.63" :duration="500">
       <div text-7xl font-mono font-bold text-gradient :style="{ transform: `scale(${1 + (number / target / 4)})` }">{{ number.toFixed(1).padStart(4, '0') }}%</div>
     </AnimateNumber>
     <div op80 mt-7 text-2xl flex gap1 items-center justify-center>
@@ -363,10 +363,16 @@ class: text-center
   </template>
 </div>
 
+<div mt30 text-sm op60>
+* 比较 Vapor 与 vDOM 模式的核心
+</div>
+
 <!--
 之前提到了 Vapor 可以减少包体积，那到底有多少呢？
 
-[click] 目前 Vapor 的包体积比 vDOM 模式减少了 26.95%。大概是 1/4 左右。
+[click] 目前 Vapor 的包体积比 vDOM 模式减少了 33.63%。
+这个数字是把 Vapor 和 vDOM 模式的核心代码和编译后的代码进行比较得出的，
+不包括共同的 reactivity。
 -->
 
 ---
@@ -378,9 +384,10 @@ class: text-center
 <h1>性能</h1>
 <img v-click src="/benchmark.png"
   transition transition-500 ease-in-out
-  object-contain w-full h="9/10"
+  object-contain w-full h="9/10" invert-90
   :class="[$clicks > 1 && 'scale-240', $clicks === 2 && 'translate-y-75', $clicks === 3 && 'translate-y--90']"
 />
+<!-- TODO inline table -->
 
 <!--
 再来看看 Vapor 的性能如何
@@ -448,12 +455,10 @@ Vue Vapor 是 Vue vDOM 模式的子集。
 
 <v-clicks at="2" class="[&>li]:mb-5" mt15>
 
-- 放弃：Options API
-  - 或许会作为第三方库？
-- 放弃：直接通过 CDN 使用
-  - 需要构建工具编译 (Vite / Webpack...)
-- 放弃：在 `<script>` 导出组件
-  - 只支持 `<script setup>`
+- 仅支持 Composition API
+  - Options API 或许会作为第三方库？
+- 仅构建工具编译 (Vite / Webpack...)
+- 仅支持 `<script setup>`
 
 </v-clicks>
 
@@ -496,11 +501,11 @@ Vue Vapor 是 Vue vDOM 模式的子集。
 
 [click] 首先，我们可以看到目前的 Vue vDOM 模式有很多功能，比如 Options API、Composition API、自定义指令、Mixins 等等。
 
-[click] 而 Vapor 目前打算放弃支持 Options API，只支持 Composition API。
-但后续根据反馈，我们可能会让 Options API 作为第三方库提供。
+[click] 而 Vapor 目前只支持 Composition API，目前不支持 Options API，但后续根据反馈，
+我们可能会让 Options API 作为第三方库提供。
 
-[click] Vapor 不打算支持直接跑在者浏览器使用，比如说引入 CDN 中的文件。
-而是需要通过构建工具编译后才能使用。
+[click] Vapor 需要通过构建工具编译后才能使用，而不支持直接跑在者浏览器使用，
+比如说引入 CDN 中的文件。
 
 这是因为 Vapor 的编译器较为复杂，需要借助像 Babel 这种第三方工具。
 如果把编译器放到浏览器里面跑，降低了性能，增加了包体积，还不如继续用 vDOM 模式。
@@ -606,16 +611,30 @@ class: text-center
 
 ---
 layout: fact
-clicks: 1
 ---
 
 <h1>
 支持 JSX
 <span transition transition-500 :class="$clicks > 0 && 'op0'">?</span>
+<div v-click inline-block translate-x="-11!">!</div>
 </h1>
+
+<div v-click flex="~ col" gap4 items-center justify-center text-xl mt10>
+  <div flex gap2 items-center>
+    <div i-logos:npm-icon />
+    <code>unplugin-vue-jsx-vapor@1.0.0</code>
+  </div>
+  <div flex w-full items-center justify-center gap2>
+    <div op80>感谢 </div>
+    <img src="https://github.com/zhiyuanzmj.png" w-6 rounded-full />
+    <a op80 href="https://github.com/zhiyuanzmj" target="_blank">zhiyuanzmj</a>
+  </div>
+</div>
 
 <!--
 也有人关心 Vapor 会支持 JSX 吗？[click] 答案是会支持 JSX。并且会比 vDOM 模式有更好的支持。
+
+[click] 我们目前已经有一个昨天新鲜出炉的库，做了最基本的支持，现在可以让你在 Vapor 中使用 JSX。
 
 未来我们可能会直接在 Vue 的核心库中做支持。这得益于 Vapor 编译器的架构更加灵活，更容易支持 JSX。
 -->
@@ -624,210 +643,29 @@ clicks: 1
 clicks: 6
 ---
 
+<!-- TODO native support -->
 <!-- Made by @LittleSound, thanks to her! -->
 <h1>架构 <sup text-5 op60 font-fast>architecture</sup></h1>
-<!-- TODO native support -->
-<v-click>
-  <div class="architecture text-xs mt--8">
-    <div
-      relative w-full rounded-lg shadow-lg text-white p="t-8 b-2"
-      transition="all duration-500 ease-in-out"
-      :class="[$clicks >= 4 ? 'px-30' : 'px-60']"
-    >
-      <!-- 上层的方框 -->
-      <div class="grid grid-cols-2 gap-y-2 gap-x-3 mb-2">
-        <div
-          class="border-1 border-white bg-gray/40 p-1 rounded"
-          transition="all duration-500 ease-in-out"
-          :class="[
-            ([0,1,2,4].includes($clicks)) ? 'op-100' : 'op-50',
-            ($clicks >= 4 ? 'col-span-1' : 'col-span-2'),
-          ]"
-        >
-          <p text="$text-secondary" font-mono>@vitejs/plugin-vue</p>
-          <p text-sm w-full flex items-center>
-            <span inline-block i-ri-arrow-down-fill />
-            <span>Call</span>
-          </p>
-        </div>
-        <div
-          v-click="4"
-          class="border-1 border-white bg-gray/40 p-1 rounded text-right"
-          transition="all duration-500 ease-in-out"
-          :class="[
-            $clicks >= 6 ? 'op-50' : 'op-100',
-            $clicks >= 4 ? 'block' : '!hidden',
-          ]"
-        >
-          <p text="$text-secondary" font-mono>unplugin-vue-jsx-vapor</p>
-          <p text-sm w-full flex items-center justify-end>
-            <span>Call</span>
-            <span inline-block i-ri-arrow-down-fill />
-          </p>
-        </div>
-        <div
-          class="border-1 border-white bg-gray/40 p-1 rounded"
-          transition="all duration-500 ease-in-out"
-          :class="[
-            ([0,1,2,4].includes($clicks)) ? 'op-100' : 'op-50',
-            ($clicks >= 4 ? 'col-span-1' : 'col-span-2'),
-          ]"
-        >
-          <p text="$text-secondary" font-mono>@vue/compiler-sfc</p>
-          <p text-sm w-full flex items-center>
-            <span inline-block i-ri-arrow-down-fill />
-            <span>Call</span>
-          </p>
-        </div>
-        <div
-          class="border-1 border-white bg-gray/40 p-1 rounded text-right" op-0
-          transition="all duration-500 ease-in-out"
-          :class="[$clicks >= 4 ? 'block' : '!hidden']"
-        >
-          <!-- @vue/jsx-vapor 占位符 -->
-          <p font-mono>@vue/jsx-vapor</p>
-          <p>JSX ➡️ IR</p>
-        </div>
-      </div>
-      <!-- 中间的方框 -->
-      <div
-        class="border-1 border-white bg-gray/40 p-1 rounded mb-6"
-        :class="([2,5].includes($clicks)) ? 'op-50' : 'op-100'"
-      >
-        <div mb-2>
-          <p text="$text-secondary" font-mono>@vue/compiler-vapor</p>
-          <p
-            text-sm
-            transition="all duration-500 ease-in-out"
-            :class="([6].includes($clicks) ? 'op-20' : 'op-100')"
-          >
-            <p>SFC <span inline-block relative top-0.5 i-ri-arrow-right-fill /> JS Code</p>
-          </p>
-        </div>
-        <div grid grid-cols-2 gap-y-2 gap-x-3>
-          <!-- @vue/compiler-vapor -->
-          <div
-            grid grid-cols-1 gap-2
-            :class="[
-              ($clicks >= 4 ? 'col-span-1' : 'col-span-2'),
-              ([6].includes($clicks) ? 'op-20' : 'op-100'),
-            ]"
-            transition="all duration-500 ease-in-out"
-          >
-            <div class="border-1 border-white p-1 rounded">
-              <p text="$text-secondary" font-mono>[Parse]</p>
-              <p text-sm><p>SFC <span inline-block relative top-0.5 i-ri-arrow-right-fill /> AST</p></p>
-            </div>
-            <div class="border-1 border-white p-1 rounded">
-              <p text="$text-secondary" font-mono>[Transform]</p>
-              <p text-sm><p>SFC AST <span inline-block relative top-0.5 i-ri-arrow-right-fill /> IR</p></p>
-            </div>
-          </div>
-          <!-- @vue/jsx-vapor -->
-          <div
-            border-1 border-white text-right mt="-24.75" mb="-1" mr="-1" p-1 rounded flex flex-col gap-2
-            shadow overflow-hidden
-            v-click="4"
-            transition="all duration-500 max-height-500 ease-in-out"
-            :class="[
-              ($clicks >= 4 ? 'flex' : '!hidden'),
-              ($clicks === 5 ? 'op-50' : 'op-100'),
-              ([6].includes($clicks) ? 'max-h-200 bg-gray/20 backdrop-blur-md !duration-2000' : 'max-h-11 bg-gray/50'),
-            ]"
-          >
-            <div>
-              <p text="$text-secondary" font-mono>@vue/jsx-vapor</p>
-              <p text-sm><p>JSX <span inline-block relative top-0.5 i-ri-arrow-right-fill /> IR</p></p>
-            </div>
-            <div flex-1 />
-            <div grid grid-cols-1 gap-2>
-              <div class="border-1 border-white p-1 rounded">
-                <p text="$text-secondary" font-mono>[Parse]</p>
-                <p text-sm>JSX <span inline-block relative top-0.5 i-ri-arrow-right-fill /> AST</p>
-              </div>
-              <div class="border-1 border-white p-1 rounded">
-                <p text="$text-secondary" font-mono>[Transform]</p>
-                <p text-sm>JSX AST <span inline-block relative top-0.5 i-ri-arrow-right-fill />  IR</p>
-              </div>
-            </div>
-          </div>
-          <div
-            class="border-1 border-white p-1 rounded" col-span-2
-            transition="all duration-500 ease-in-out"
-            :class="[
-              (($clicks === 6) ? 'text-right' : 'text-left'),
-              (($clicks < 4 | $clicks === 6) ? 'w-full' : 'w-[49%] !duration-0'),
-            ]"
-          >
-            <p text="$text-secondary" font-mono>[Generate]</p>
-            <p text-sm>IR <span inline-block relative top-0.5 i-ri-arrow-right-fill />  JS Code</p>
-          </div>
-        </div>
-      </div>
-      <div w-full h-4 />
-      <!-- 底部的方框 -->
-      <div
-        class="border-1 border-white bg-gray/40 p-1 rounded"
-        transition="all duration-500 ease-in-out"
-        :class="[
-          (($clicks === 5 || $clicks === 2) ? 'op-50' : 'op-100'),
-          (($clicks === 6) ? 'text-right' : 'text-left'),
-        ]"
-      >
-        <p text="$text-secondary">JS Code</p>
-        <p text-sm>Final Product｜最终产物</p>
-      </div>
-      <!-- 箭头 -->
-      <div>
-        <!-- SFC -->
-        <div
-          absolute inset-y-0 w-10 translate-x="-1/2" flex="~ col" border="$color-sfc" pb-16
-          transition="all duration-500 ease-in-out"
-          :class="[
-            ($clicks >= 1 ? 'translate-y-0' : 'translate-y--100'),
-            ($clicks >= 4 ? 'left-8/20' : 'left-10/20'),
-            (($clicks >= 5) ? 'op-20' : 'op-100'),
-          ]"
-        >
-          <div font-mono flex-1 text-center p-1 w-full border-4 border-b-none border="$color-sfc" rounded-t>
-            SFC
-          </div>
-          <div ml="-2" w-14 flex>
-            <div w-2 border-t-4 border="$color-sfc" rounded-tl />
-            <div w-1.5 border-t-4 border="$color-sfc" rounded-br />
-            <div w-10 />
-            <div w-1.5 border-t-4 border="$color-sfc" rounded-bl />
-            <div w-2 border-t-4 border="$color-sfc" rounded-tr />
-          </div>
-          <div w-10 h-10 mt="-5" border-b-4 border-r-4 border="$color-sfc" rotate-45 rounded-br />
-        </div>
-        <!-- JSX -->
-        <div
-          v-click="4"
-          absolute inset-y-0 w-10 left="12/20" translate-x="-1/2" flex="~ col" border="$color-jsx" pb-16
-          transition="all duration-500 ease-in-out"
-          :class="($clicks >= 4 ? 'translate-y-0' : 'translate-y--100')"
-        >
-          <div font-mono flex-1 text-center p-1 w-full border-4 border-b-none border="$color-jsx" rounded-t>
-            JSX
-          </div>
-          <div ml="-2" w-14 flex>
-            <div w-2 border-t-4 border="$color-jsx" rounded-tl />
-            <div w-1.5 border-t-4 border="$color-jsx" rounded-br />
-            <div w-10 />
-            <div w-1.5 border-t-4 border="$color-jsx" rounded-bl />
-            <div w-2 border-t-4 border="$color-jsx" rounded-tr />
-          </div>
-          <div w-10 h-10 mt="-5" border-b-4 border-r-4 border="$color-jsx" rotate-45 rounded-br />
-        </div>
-      </div>
-    </div>
-  </div>
-  <p text-xs relative text-right top="-2" text="$text-secondary">IR = 中间语言 ｜ AST = 抽象语法树 ｜ SFC = 单文件组件 ｜ JSX = JavaScript XML 语法</p>
-</v-click>
+
+<Architecture v-click />
 
 <!--
-h
+那 Vapor 的架构是如何灵活的呢？
+
+[click] 这是 SFC 文件的调用逻辑
+[click] 首先我们有顶层面向用户的 Vite 插件，插件会调用 SFC 的编译器。
+
+[click] SFC 编译器又会把里面 template 标签拎出来，传递给 Vapor 的编译器，最终编译为 JS 代码。
+
+内部的流程是
+1. 首先是 parse 解析过程，会把内容解析成 AST 语法树。
+2. 之后进入 transform 转换过程，会把 AST 语法树转换成 IR 中间语言。
+中间语言是用来表达 Vapor 要创建哪些模板片段，绑定什么事件等等。
+3. 最后是 generate 生成过程，会把 IR 中间语言转换成 JS 代码。它就是最终产物了。
+
+[click] 那 JSX 文件，我们是如何处理的呢？
+
+[click] 首先同样是有面向用户的插件，插件将会调用核心的 JSX 的编译器。
 -->
 
 ---
@@ -950,7 +788,8 @@ class: text-center
 [click] 还有一些活跃的贡献者，比如小音、Ubugeeei
 和 Doctor Wu 等等，和 PPT 上没有提及到的社区贡献者。
 
-同时需要再次感谢一下小音和 Doctor Wu，本次 PPT 也离不开他们的帮助！
+同时需要再次感谢一下小音和 Doctor Wu，本次 PPT 也离不开他们的协助！
+Vue 社区还是挺开放的，不仅 Vapor 有挺多活跃的贡献者，本次的 PPT 也有贡献者
 -->
 
 ---
