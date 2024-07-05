@@ -85,7 +85,7 @@ growHide: 'true'
 
 <section flex items-center justify-around mt="-14">
   <img v-click src="/vvv.png" w="1/4" rounded-2xl translate-x="20" />
-  <Analysis v-click v-if="$slidev.nav.currentPage === 3 || $slidev.nav.currentPage === 4" scale-70 />
+  <VoteAnalysis v-click v-if="$slidev.nav.currentPage === 3 || $slidev.nav.currentPage === 4" scale-70 />
 </section>
 
 <div abs-br m-5 op60 text-sm font-semibold>由 Doctor Wu 技术协助</div>

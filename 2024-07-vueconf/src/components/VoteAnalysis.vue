@@ -39,7 +39,6 @@ const fetchResult = () => {
 let timer: ReturnType<typeof setInterval>
 
 onMounted(() => {
-  fetchResult()
   timer = setInterval(fetchResult, 3000)
 })
 
@@ -49,15 +48,30 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <section class="h-[58vh] w-[58vh] flex items-center justify-center overflow-hidden"
-    style="box-shadow: #000000 0 0 20px inset">
-    <section class="wrapper relative overflow-hidden" style="box-shadow: #000000 0 0 40px 80px inset">
+  <section
+    class="h-[58vh] w-[58vh] flex items-center justify-center overflow-hidden"
+    style="box-shadow: #000000 0 0 20px inset"
+  >
+    <section
+      class="wrapper relative overflow-hidden"
+      style="box-shadow: #000000 0 0 40px 80px inset"
+    >
       <section class="wrapper absolute z-[-1] flex">
-        <section v-for="i in 4" :key="i" style="border-bottom: none !important" class="h-full w-full"
-          border="~ 1px dashed gray" />
+        <section
+          v-for="i in 4"
+          :key="i"
+          style="border-bottom: none !important"
+          class="h-full w-full"
+          border="~ 1px dashed gray"
+        />
       </section>
       <section class="wrapper absolute z-[-1] flex flex-col">
-        <section v-for="i in 4" :key="i" class="h-full w-full" border="~ 1px dashed gray" />
+        <section
+          v-for="i in 4"
+          :key="i"
+          class="h-full w-full"
+          border="~ 1px dashed gray"
+        />
       </section>
       <section class="cell absolute left-[15vh] top-[15vh] z-1">
         <div>{{ votesLabel.a }}</div>
