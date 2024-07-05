@@ -37,6 +37,7 @@ const frontmatter = computed(
 const distribution = computed(
   () => (frontmatter.value.grow || 'full') as Distribution,
 )
+const hide = computed(() => frontmatter.value.growHide === 'true')
 const opacity = computed<number>(() => +(frontmatter.value.growOpacity || 0.4))
 const hue = computed<number>(() => +(frontmatter.value.growHue || 0))
 const seed = computed<string>(() =>
@@ -154,26 +155,16 @@ const poly3 = usePloy(3)
 </script>
 
 <template>
-  <div
-    class="bg pointer-events-none transform-gpu overflow-hidden"
-    :style="{ filter: `blur(70px) hue-rotate(${hue}deg)` }"
-    aria-hidden="true"
-  >
-    <div
-      class="clip to-white/10 bg-gradient-to-r"
-      :class="colors[0]"
-      :style="{ 'clip-path': `polygon(${poly1})`, opacity }"
-    />
-    <div
-      class="clip to-white/10 bg-gradient-to-l"
-      :class="colors[1]"
-      :style="{ 'clip-path': `polygon(${poly2})`, opacity }"
-    />
-    <div
-      class="clip to-white/10 bg-gradient-to-t"
-      :class="colors[2]"
-      :style="{ 'clip-path': `polygon(${poly3})`, opacity: 0.2 }"
-    />
+  <div class="bg pointer-events-none transform-gpu overflow-hidden" :style="{
+    filter: `blur(70px) hue-rotate(${hue}deg)`,
+    opacity: hide ? 0 : 1,
+  }" aria-hidden="true">
+    <div class="clip to-white/10 bg-gradient-to-r" :class="colors[0]"
+      :style="{ 'clip-path': `polygon(${poly1})`, opacity }" />
+    <div class="clip to-white/10 bg-gradient-to-l" :class="colors[1]"
+      :style="{ 'clip-path': `polygon(${poly2})`, opacity }" />
+    <div class="clip to-white/10 bg-gradient-to-t" :class="colors[2]"
+      :style="{ 'clip-path': `polygon(${poly3})`, opacity: 0.2 }" />
   </div>
 </template>
 

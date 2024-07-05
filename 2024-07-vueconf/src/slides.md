@@ -78,12 +78,15 @@ class: p-20
 
 ---
 layout: statement
-grow: left
+growHide: "true"
 ---
 
 ## 👂 听过 Vue Vapor 吗？
 
-<img v-click src="/vvv.png" w="1/3" ma mt20 rounded-2xl />
+<section class="flex justify-between">
+  <img v-click src="/vvv.png" w="1/3" ma mt20 rounded-2xl />
+  <Analysis v-if="$slidev.nav.currentPage === 3 || $slidev.nav.currentPage === 4" v-click />
+</section>
 
 <!--
 好，我们进入正题
