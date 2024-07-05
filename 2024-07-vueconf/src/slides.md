@@ -88,13 +88,13 @@ growHide: 'true'
   <Analysis v-click v-if="$slidev.nav.currentPage === 3 || $slidev.nav.currentPage === 4" scale-70 />
 </section>
 
+<div abs-br m-5 op60 text-sm font-semibold>由 Doctor Wu 技术协助</div>
+
 <!--
 好，我们进入正题
 
 [click] 首先来做个投票调查，现场有多少人之前听过 Vue Vapor? 有多少人尝试过跑 Demo？或者甚至贡献过 Vapor？
 我们这有个二维码，各位可以扫一扫，投个票
-
-TODO live data
 -->
 
 ---
@@ -584,7 +584,8 @@ Vue Vapor 是 Vue vDOM 模式的子集。
 目前的进度如何呢？
 
 目前我们已经完成了大部分的基础功能，比如 SFC 编译、各种指令、生命周期钩子等等。
-刚刚的投票的那个页面，也是用 Vapor 实现的。
+
+值得一提的是，刚刚大家投票的那个页面，就是用 Vapor 实现的。
 
 [click] 接下来我们会继续优化性能、支持 SSR 和水合（hydration）、适配 DevTools、支持异步组件和完善内置组件等等。
 
@@ -635,6 +636,7 @@ layout: fact
 也有人关心 Vapor 会支持 JSX 吗？[click] 答案是会支持 JSX。并且会比 vDOM 模式有更好的支持。
 
 [click] 我们目前已经有一个昨天新鲜出炉的库，做了最基本的支持，现在可以让你在 Vapor 中使用 JSX。
+感谢高飞的贡献！
 
 未来我们可能会直接在 Vue 的核心库中做支持。这得益于 Vapor 编译器的架构更加灵活，更容易支持 JSX。
 -->
@@ -652,27 +654,78 @@ clicks: 6
 <!--
 那 Vapor 的架构是如何灵活的呢？
 
-[click] 这是 SFC 文件的调用逻辑
+[click] 这张图是 SFC 文件的调用逻辑
 [click] 首先我们有顶层面向用户的 Vite 插件，插件会调用 SFC 的编译器。
 
 [click] SFC 编译器又会把里面 template 标签拎出来，传递给 Vapor 的编译器，最终编译为 JS 代码。
 
-内部的流程是
-1. 首先是 parse 解析过程，会把内容解析成 AST 语法树。
-2. 之后进入 transform 转换过程，会把 AST 语法树转换成 IR 中间语言。
-中间语言是用来表达 Vapor 要创建哪些模板片段，绑定什么事件等等。
+具体来说，内部的流程是
+1. 首先是 parse 解析过程，会把内容解析成 HTML 的 AST 语法树。
+2. 之后进入 transform 转换过程，会把刚刚的 AST 语法树转换成 IR 中间语言。
+中间语言是用来表达 Vapor 要创建哪些模板片段，绑定什么事件，有什么指令等等这种细节。
 3. 最后是 generate 生成过程，会把 IR 中间语言转换成 JS 代码。它就是最终产物了。
 
 [click] 那 JSX 文件，我们是如何处理的呢？
 
-[click] 首先同样是有面向用户的插件，插件将会调用核心的 JSX 的编译器。
+[click] 首先同样是有面向用户的插件
+
+[click] 插件将会调用核心的 JSX 的编译器。这个 JSX 编译器有自己的 parse 和 transform 过程。
+但最终的 generate 过程是可以复用 Vapor 编译器的。因为 SFC 和 JSX 的 IR 遵循同一套的规范。
 -->
 
 ---
 
-# interop
+<h1 important-mb10>融合 <sup text-5 op60 font-fast>integration</sup></h1>
 
-TODO
+<v-click>
+
+- Vapor 组件支持 vDOM 模式
+
+- vDOM 组件将支持 Vapor 模式
+- 支持纯 Vapor 模式
+
+</v-click>
+
+<div
+  v-click="1"
+  absolute w-160 h-160 left-80 top-10 border="~ green rounded-full"
+  bg-green:20 text-3xl text-green flex items-start justify-center
+>
+  <div flex="~ col" items-center justify-center mt6 gap1>
+    <span text-2xl font-semibold>vDOM</span>
+  </div>
+</div>
+
+<div
+  v-click="1"
+  absolute w-130 h-130 left-95 top-30 border="~ purple rounded-full"
+  bg-purple:20 text-3xl text-purple flex items-start justify-center
+>
+  <div flex="~ col" items-center justify-center mt6 gap1>
+    <span text-2xl font-semibold>Vapor</span>
+  </div>
+</div>
+
+<div
+  v-click="1"
+  absolute w-100 h-100 left-110 top-50 border="~ green rounded-full"
+  bg-green:20 text-3xl text-green flex items-start justify-center
+>
+  <div flex="~ col" items-center justify-center mt6 gap1 text-2xl font-semibold>
+    <span>vDOM</span>
+    <span mt30 tracking-widest>...</span>
+  </div>
+</div>
+
+<!--
+那有人要问，我要不要一口气全部到 Vapor 上呢？
+
+[click] 答案是不一定。Vapor 组件会支持在 vDOM 模式中使用，反之亦然。
+当然也支持纯 Vapor 模式。
+
+这样可以让你更好地平滑迁移，不用一下子全部到 Vapor 上。对于性能热点的组件，
+可以先迁移到 Vapor 上，其他的组件可以继续使用 vDOM 模式。
+-->
 
 ---
 
@@ -775,21 +828,26 @@ class: text-center
 <GitHub v-click="3" transition transition-400 ease-out
           :class="$clicks < 3 && 'translate-x-10'"
           id="doctor-wu" label="活跃开发者" name="Doctor Wu" />
+<GitHub v-click="4" transition transition-400 ease-out
+          :class="$clicks < 4 && 'translate-x-10'"
+          id="zhiyuanzmj" label="JSX 开发者" name="高飞" />
 
 </div>
 
 <!--
-在这同样要感谢一下 Vue Vapor 的贡献者们
+在这我必须要感谢一下 Vue Vapor 的贡献者们
 
 [click] 特别是 Evan You，第一版的 Vapor 就是 Evan 写的，现在也在做重要的设计和决策。
 
 [click] 然后就是我自己，我目前负责 Vapor 的维护和开发。
 
-[click] 还有一些活跃的贡献者，比如小音、Ubugeeei
-和 Doctor Wu 等等，和 PPT 上没有提及到的社区贡献者。
+[click] 还有这些活跃的贡献者，小音、Ubugeeei 和 Doctor Wu。
+
+[click] 最后是 高飞，JSX 的支持就来自于他，让 Vapor 有了基础的 JSX 支持。
 
 同时需要再次感谢一下小音和 Doctor Wu，本次 PPT 也离不开他们的协助！
-Vue 社区还是挺开放的，不仅 Vapor 有挺多活跃的贡献者，本次的 PPT 也有贡献者
+
+Vue 社区还是挺开放的，不仅 Vapor 有众多活跃的贡献者，本次的 PPT 也有贡献者。
 -->
 
 ---
@@ -812,7 +870,7 @@ class: text-center
 <!--
 最后，感谢所有赞助我的人，你们的支持是我继续开发的动力。
 
-如果你也想加速 Vapor 的发展，可以在 GitHub 上赞助我和其他的活跃开发者。
+如果你也想加速 Vapor 的发展，可以在 GitHub 上赞助我和刚才提到的小伙伴们。
 -->
 
 ---
@@ -849,7 +907,7 @@ a {
 最后，今天我的分享就到这里了。
 如果大家对 Vue Vapor 有兴趣，可以在 GitHub 上关注 Vue Vapor 的进展。
 
-也需要大力感谢一下 Slidev 的作者 Anthony Fu，没有他的模板就没有这么好看的 PPT！
+也需要大力感谢一下 Slidev 的作者 Anthony Fu，没有他的设计就没有这么好看的 PPT！
 感谢大家，下面是 Q&A 环节。
 -->
 

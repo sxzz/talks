@@ -26,6 +26,7 @@ defineProps<{
       text-xl
       font-semibold
       border-none="!"
+      tracking-wider
     >
       {{ name || id }}
     </a>
