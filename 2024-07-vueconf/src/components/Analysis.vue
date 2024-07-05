@@ -20,7 +20,16 @@ const fetchResult = () => {
   fetch(`${url}/vote-analysis`)
     .then((res) => res.json())
     .then((res) => {
-      Object.assign(analysisResult.value, res)
+      Object.assign(
+        analysisResult.value,
+        {
+          a: 0,
+          b: 0,
+          c: 0,
+          d: 0,
+        },
+        res,
+      )
     })
     .catch((error) => {
       console.error(error)
