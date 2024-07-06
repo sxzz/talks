@@ -8,6 +8,7 @@ mdc: true
 layout: cover
 growSeed: vue
 growOpacity: 0.6
+remoteAssets: true
 ---
 
 # Vue Vapor：重新发明
@@ -277,14 +278,14 @@ import { ref } from 'vue'
 
 const count = ref(0)
 
-function incrase() {
+function increase() {
   count.value++
 }
 </script>
 
 <template>
   <h1>Count: {{ count }}</h1>
-  <button @click="incrase">Incrase</button>
+  <button @click="increase">Increase</button>
 </template>
 ```
 
@@ -301,19 +302,19 @@ import { delegate, delegateEvents, renderEffect, setText,
 import { ref } from 'vue'
 
 const t0 = template('<h1>')
-const t1 = template('<button>Incrase')
+const t1 = template('<button>Increase')
 delegateEvents('click')
 
 export default {
   setup() {
     const count = ref(0)
-    function incrase() {
+    function increase() {
       count.value++
     }
 
     const n0 = t0()
     const n1 = t1()
-    delegate(n1, 'click', () => incrase)
+    delegate(n1, 'click', () => increase)
     renderEffect(() => setText(n0, 'Count: ',
                                count.value))
     return [n0, n1]
@@ -334,7 +335,7 @@ export default {
 [click] 首先它会把模板编译成一个个的模板片段，然后把事件代理到根节点上。
 这样可以减少事件监听器的数量，优化性能。
 
-[click] 然后我们在 setup 里面定义了 count 和 incrase 函数
+[click] 然后我们在 setup 里面定义了 count 和 increase 函数
 
 [click] 最后几行代码就是核心的渲染逻辑了。
 我们把事件处理函数绑定节点上，然后用 `renderEffect` 来追踪数据的更新。
@@ -384,7 +385,7 @@ class: text-center
 <h1>性能</h1>
 <img v-click src="/benchmark.png"
   transition transition-500 ease-in-out
-  object-contain w-full h="9/10" invert-90
+  object-contain w-full h="9/10" invert hue-rotate-180
   :class="[$clicks > 1 && 'scale-240', $clicks === 2 && 'translate-y-75', $clicks === 3 && 'translate-y--90']"
 />
 <!-- TODO inline table -->
@@ -401,6 +402,8 @@ class: text-center
 虽然 Vapor 已经比 Vue vDOM 和 React 快了，但是还有非常大的提升空间，我们会持续优化。
 -->
 
+---
+class: ml20
 ---
 
 <h1>🤔 怎么变快？ <sup text-5 op60 font-fast>faster</sup></h1>
@@ -447,6 +450,7 @@ layout: statement
 
 ---
 clicks: 4
+class: ml10
 ---
 
 <h1>子集 <sup text-5 op60 font-fast>subset</sup></h1>
@@ -516,6 +520,8 @@ Vue Vapor 是 Vue vDOM 模式的子集。
 -->
 
 ---
+class: ml20
+---
 
 <h1>兼容性 <sup text-5 op60 font-fast>compatibility</sup></h1>
 
@@ -555,6 +561,8 @@ Vue Vapor 是 Vue vDOM 模式的子集。
 -->
 
 ---
+class: ml20
+---
 
 <h1 important-mb10>进度 <sup text-5 op60 font-fast>progress</sup></h1>
 
@@ -567,7 +575,7 @@ Vue Vapor 是 Vue vDOM 模式的子集。
 
 <div mt4 v-click>
 
-- 🚧 性能调优
+- 🚧 性能调优！性能调优！性能调优！
 - 🚧 SSR / 水合 (hydration)
 - 🚧 DevTools
 - 🚧 异步组件
@@ -652,7 +660,7 @@ clicks: 6
 <Architecture v-click />
 
 <!--
-那 Vapor 的架构是如何灵活的呢？
+那 Vapor 的架构是如何灵活的呢？ [cue jinjiang]
 
 [click] 这张图是 SFC 文件的调用逻辑
 [click] 首先我们有顶层面向用户的 Vite 插件，插件会调用 SFC 的编译器。
@@ -743,6 +751,8 @@ clicks: 6
 -->
 
 ---
+class: ml10
+---
 
 <h1>功能规划 <sup text-5 op60 font-fast>feature plan</sup></h1>
 
@@ -792,6 +802,8 @@ feature flag 就是一个开关，可以在 Vue 项目中打开或关闭某个�
 至于 Vue 4，我们充分吸取了 Vue 2 到 Vue 3 的教训，我们会以先在 minor 中版本中引入新的 feature flag，然后再在 Vue 4 中废弃掉或改变它的默认值。但是目前没有计划 Vue 4 的发布，可能需要等待 feature flag 达到一定数量后才会考虑。
 -->
 
+---
+class: ml10
 ---
 
 <h1>总结 <sup text-5 op60 font-fast>recap</sup></h1>
@@ -860,6 +872,8 @@ class: text-center
 
 [click] 最后是 高飞，JSX 的支持就来自于他，让 Vapor 有了基础的 JSX 支持。
 
+build in public
+
 同时需要再次感谢一下小音和 Doctor Wu，本次 PPT 也离不开他们的协助！
 
 Vue 社区还是挺开放的，不仅 Vapor 有众多活跃的贡献者，本次的 PPT 也有贡献者。
@@ -878,14 +892,21 @@ class: text-center
   <a href="https://github.com/sponsors/sxzz" target="_blank">github.com/sponsors/sxzz</a>
 </div>
 
-<a href="https://github.com/sponsors/sxzz" target="_blank">
-  <img src="https://raw.githubusercontent.com/sxzz/sponsors/main/sponsors.circles.svg" h-95 ma object-contain />
-</a>
+<div flex items-center justify-center gap-10>
+  <a href="https://github.com/sponsors/sxzz" target="_blank" border-none="!"
+    transition transition-500 ease-in-out :class="[$clicks === 0 && 'translate-x-35']">
+    <img src="https://raw.githubusercontent.com/sxzz/sponsors/main/sponsors.circles.svg" h-95 ma object-contain />
+  </a>
+
+  <img v-click src="/sponsor.png" max-h-50 rounded-xl />
+</div>
 
 <!--
-最后，感谢所有赞助我的人，你们的支持是我继续开发的动力。
+最后，感谢所有赞助我的人，你们的支持是我继续开发的动力。[cue jinjiang]
 
 如果你也想加速 Vapor 的发展，可以在 GitHub 上赞助我和刚才提到的小伙伴们。
+
+[click] 如果你想赞助我，可以扫描这个二维码在 GitHub 上赞助我。
 -->
 
 ---
