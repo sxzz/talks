@@ -1,6 +1,7 @@
 {
   "name": "talks",
   "private": true,
+  "packageManager": "pnpm@9.5.0",
   "type": "module",
   "scripts": {
     "build": "rimraf dist && pnpm -r run build",
