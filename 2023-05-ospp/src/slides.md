@@ -1,17 +1,18 @@
 ---
 theme: apple-basic
-class: text-center
+class: flex justify-center
 highlighter: shiki
 lineNumbers: false
 drawings:
   persist: false
 transition: slide-up
 css: unocss
-title: Welcome to Slidev
+title: 大学生的开源成长
 layout: intro
 ---
 
 # 大学生的开源成长
+
 ## 如何从一个开源萌新成为一名 Vue 核心团队成员
 
 <div class="abs-br mx-10 my-8 flex scale-120">
@@ -32,7 +33,6 @@ layout: fact
 ---
 
 # 编程经历
-
 
 ---
 layout: center

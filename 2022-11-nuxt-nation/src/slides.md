@@ -2,6 +2,7 @@
 highlighter: shiki
 css: unocss
 title: 'Vue Macros'
+colorSchema: dark
 src: './pages/01-cover.md'
 ---
 
@@ -18,7 +19,6 @@ layout: center
 # What's <VueMacrosTitle inline font-bold>Vue Macros</VueMacrosTitle>?
 
 <div h-20 />
-
 
 ---
 src: './pages/02-intro.md'
@@ -53,7 +53,6 @@ layout: cover
 ---
 
 # Let's have a try!
-
 
 ---
 src: './pages/08-contributors.md'

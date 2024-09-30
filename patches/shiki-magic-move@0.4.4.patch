@@ -1,0 +1,23 @@
+diff --git a/dist/renderer.mjs b/dist/renderer.mjs
+index 0700b61a75fd490b03383929becc5ebae6239c68..641466086df907b8b86ae1a0305b112e34b3df25 100644
+--- a/dist/renderer.mjs
++++ b/dist/renderer.mjs
+@@ -57,8 +57,16 @@ class MagicMoveRenderer {
+     }
+   }
+   applyElementStyle(el, token) {
+-    if (token.htmlStyle)
+-      el.setAttribute("style", token.htmlStyle);
++    if (token.htmlStyle) {
++      if (typeof token.htmlStyle === 'string') {
++        el.setAttribute("style", token.htmlStyle);
++      }
++      else {
++        for (const [key, value] of Object.entries(token.htmlStyle)) {
++          el.style.setProperty(key, value)
++        }
++      }
++    }
+     if (token.htmlClass)
+       el.className = [`${CLASS_PREFIX}-item`, token.htmlClass].join(" ");
+     if (token.color)

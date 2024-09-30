@@ -2,6 +2,7 @@
 highlighter: shiki
 css: unocss
 layout: center
+colorSchema: dark
 ---
 
 <div i-line-md:loading-twotone-loop w30 h30 op60 />
