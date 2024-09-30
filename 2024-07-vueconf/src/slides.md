@@ -8,7 +8,6 @@ mdc: true
 layout: cover
 growSeed: vue
 growOpacity: 0.6
-remoteAssets: true
 ---
 
 # Vue Vapor：重新发明
