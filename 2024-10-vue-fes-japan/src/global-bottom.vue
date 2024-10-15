@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { useNav } from '@slidev/client'
 import seedrandom from 'seedrandom'
+import { computed, ref, watch } from 'vue'
+
 /**
  * A new grow effect system powered by blured polygons
  *
@@ -12,7 +14,6 @@ import seedrandom from 'seedrandom'
  * - growHue: number - Hue shift for the polygons (default: 0)
  * - growSeed: string | false - Seed for the stable random distribution (default: 'default')
  */
-import { computed, ref, watch } from 'vue'
 
 const colors = ['from-[#42B883]', 'from-[#35495E]', 'from-[#5468ff]']
 const { currentSlideRoute } = useNav()

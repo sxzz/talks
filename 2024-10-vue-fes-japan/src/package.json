@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "slidev",
+    "build": "slidev build --base /2024-10-vue-fes-japan/ --out ../../dist/2024-10-vue-fes-japan",
+    "export": "slidev export --dark --per-slide --output ../2024-10-vue-fes-japan.pdf"
+  }
+}

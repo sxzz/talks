@@ -7,6 +7,7 @@ and [Slidev](https://sli.dev).
 
 ###### 2024
 
+- `en` `ja` [Vue Vapor: Reinvention](./2024-10-vue-fes-japan/) - Vue Fes Japan 2024
 - `zh` [Vue Vapor：重新发明](./2024-07-vueconf/) - VueConf CN
 
 ###### 2023

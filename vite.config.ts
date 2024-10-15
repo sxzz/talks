@@ -26,6 +26,12 @@ export default defineConfig({
             Vite: 'https://github.com/vitejs/vite',
             Unplugin: 'https://github.com/unplugin',
             Nuxt: 'https://github.com/nuxt',
+            Oxc: {
+              link: 'https://oxc.rs/',
+              imageUrl:
+                'https://cdn.jsdelivr.net/gh/oxc-project/oxc-assets/round-bubbles.png',
+            },
+            UnJS: 'https://github.com/unjs',
           },
         })
       },

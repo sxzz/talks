@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue'
+import { ref } from 'vue'
 
-const url = 'https://vvv-api.sxzz.moe'
 const votesLabel = {
   a: '没听过',
   b: '听说过',
@@ -10,40 +9,10 @@ const votesLabel = {
 }
 
 const analysisResult = ref({
-  a: 0,
-  b: 0,
-  c: 0,
-  d: 0,
-})
-
-const fetchResult = () => {
-  fetch(`${url}/vote-analysis`)
-    .then((res) => res.json())
-    .then((res) => {
-      if (!Object.keys(res).length) return
-      Object.assign(
-        analysisResult.value,
-        {
-          a: 0,
-          b: 0,
-          c: 0,
-          d: 0,
-        },
-        res,
-      )
-    })
-    .catch((error) => {
-      console.error(error)
-    })
-}
-let timer: ReturnType<typeof setInterval>
-
-onMounted(() => {
-  timer = setInterval(fetchResult, 3000)
-})
-
-onUnmounted(() => {
-  clearInterval(timer)
+  a: 233,
+  b: 234,
+  c: 22,
+  d: 26,
 })
 </script>
 
