@@ -16,5 +16,5 @@ and [Slidev](https://sli.dev).
 
 ###### 2022
 
-- `en` [Vue Macros 介绍及基本原理](./2022-12-vueconf/) - VueConf CN
-- `zh` [Introduction to Vue Macros](./2022-11-nuxt-nation/) - Nuxt Nation
+- `zh` [Vue Macros 介绍及基本原理](./2022-12-vueconf/) - VueConf CN
+- `en` [Introduction to Vue Macros](./2022-11-nuxt-nation/) - Nuxt Nation
