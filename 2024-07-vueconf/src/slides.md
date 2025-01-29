@@ -296,9 +296,9 @@ function increase() {
 
 <!-- prettier-ignore-start -->
 ```js {all|5-7|11-14|16-21|all}
+import { ref } from 'vue'
 import { delegate, delegateEvents, renderEffect, setText,
          template } from 'vue/vapor'
-import { ref } from 'vue'
 
 const t0 = template('<h1>')
 const t1 = template('<button>Increase')

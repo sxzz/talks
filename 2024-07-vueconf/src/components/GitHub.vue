@@ -19,7 +19,7 @@ defineProps<{
         object-cover
       />
     </a>
-    <div font-smiley text-4 op70>{{ label }}</div>
+    <div text-4 op70 font-smiley>{{ label }}</div>
     <a
       :href="`https://github.com/${id}`"
       target="_blank"
