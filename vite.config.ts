@@ -32,6 +32,14 @@ export default defineConfig({
                 'https://cdn.jsdelivr.net/gh/oxc-project/oxc-assets/round-bubbles.png',
             },
             UnJS: 'https://github.com/unjs',
+            Rolldown: 'https://github.com/rolldown',
+            tsdown: {
+              link: 'https://tsdown.dev/',
+              imageUrl:
+                'https://raw.githubusercontent.com/rolldown/tsdown/refs/heads/main/docs/public/tsdown.svg',
+            },
+            VoidZero: 'https://github.com/voidzero-dev',
+            Quansync: 'https://github.com/quansync-dev/quansync',
           },
         })
       },

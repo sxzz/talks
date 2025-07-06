@@ -5,6 +5,10 @@ Slides & code for my talks.
 Strongly thanks to [Anthony Fu](https://github.com/antfu)
 and [Slidev](https://sli.dev).
 
+###### 2025
+
+- `zh` [tsdown：库库包一切](./2025-07-vueconf/) - VueConf CN 2025
+
 ###### 2024
 
 - `en` `ja` [Vue Vapor: Reinvention](./2024-10-vue-fes-japan/) - Vue Fes Japan 2024
