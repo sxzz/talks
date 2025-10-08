@@ -1,5 +1,5 @@
 import { sxzz } from '@sxzz/eslint-config'
-export default sxzz([
+export default sxzz({ pnpm: true }).append([
   {
     rules: {
       'vue/valid-define-emits': 'off',

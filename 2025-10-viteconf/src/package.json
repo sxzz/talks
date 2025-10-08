@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "slidev",
+    "build": "slidev build --base /2025-10-viteconf/ --out ../../dist/2025-10-viteconf",
+    "export": "slidev export --dark --per-slide --output ../2025-10-viteconf.pdf"
+  }
+}
